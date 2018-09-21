@@ -15,21 +15,7 @@ function endsWith(str, suffix) {
 var parseString = require('xml2js').parseString;
 // return the version number from `pom.xml` file
 function parseVersion() {
-    var version = null;
-    var pomXml = fs.readFileSync('pom.xml', 'utf8');
-    parseString(pomXml, function (err, result) {
-        if (err) {
-            throw new Error('Failed to parse pom.xml: ' + err);
-        }
-        if (result.project.version && result.project.version[0]) {
-            version = result.project.version[0];
-        } else if (result.project.parent && result.project.parent[0] && result.project.parent[0].version && result.project.parent[0].version[0]) {
-            version = result.project.parent[0].version[0];
-        }
-    });
-    if (version === null) {
-        throw new Error('pom.xml is malformed. No version is defined');
-    }
+    var version = '0.0.1-SNAPSHOT';
     return version;
 }
 
